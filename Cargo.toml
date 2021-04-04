@@ -8,3 +8,14 @@ edition = "2018"
 
 [dependencies]
 rocket = "0.4.7"
+[dependencies.rocket_contrib]
+version = "0.4.7"
+default-features = false
+features = ["handlebars_templates"]
+
+
+[development]
+template_dir = "templates/"
+
+[production]
+template_dir = "templates/"
