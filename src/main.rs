@@ -5,13 +5,18 @@ use rocket_contrib::templates::Template;
 
 #[get("/")]
 fn index() -> Template {
-    let context = ();
-    Template::render("index", &context)
+    Template::render("index", ())
+}
+
+#[catch(404)]
+fn not_found() -> Template {
+    Template::render("404", ())
 }
 
 fn main() {
     rocket::ignite()
         .mount("/", routes![index])
+        .register(catchers![not_found])
         .attach(Template::fairing())
         .launch();
 }
